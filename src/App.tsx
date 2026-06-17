@@ -100,40 +100,27 @@ export default function App() {
             className="w-full relative"
           >
 
-            <header className="relative w-screen h-screen flex flex-col items-center justify-center overflow-hidden">
-              <div className="absolute inset-0 bg-black/40 z-10" />
-              <div className="absolute inset-0 w-full h-full scale-105 pointer-events-none">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover object-center"
-                  src="https://b4701886-2e3c-4a60-9e9f-056bd416f1cc.selstorage.ru/IMG_8746.MOV"
-                  poster="https://static.tildacdn.com/tild3363-3936-4130-a265-356138616438/Group_2399.jpg"
-                />
-              </div>
-              <div className="relative z-20 text-center text-white px-4 max-w-2xl flex flex-col items-center">
-                <p className="text-xs sm:text-sm font-sans tracking-[0.25em] text-gold-100 uppercase mb-4 font-light">
+            <header className="relative w-screen h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-[#f5f0e8] to-[#e8e0d4]">
+              <div className="relative z-20 text-center px-4 max-w-2xl flex flex-col items-center">
+                <p className="text-xs sm:text-sm font-sans tracking-[0.25em] text-[#896e4f]/80 uppercase mb-4 font-light">
                   Приглашение на свадьбу
                 </p>
-                <h1 className="font-serif text-5xl sm:text-7xl tracking-wide text-[#fffffa] mb-6 select-none leading-tight drop-shadow-[0_5px_20px_rgba(0,0,0,0.45)]">
+                <h1 className="font-serif text-5xl sm:text-7xl tracking-wide text-[#3e3830] mb-6 select-none leading-tight">
                   Мовсес
-                  <span className="block italic text-3xl sm:text-4xl text-gold-200 my-2 font-normal">и</span>
+                  <span className="block italic text-3xl sm:text-4xl text-[#896e4f] my-2 font-normal">и</span>
                   Армине
                 </h1>
-                <div className="w-24 h-[1px] bg-gold-200/60 my-2" />
-                <p className="text-lg sm:text-xl font-serif tracking-[0.2em] italic text-[#fffffa] mt-3 font-light">
+                <div className="w-24 h-[1px] bg-[#dcb980]/60 my-2" />
+                <p className="text-lg sm:text-xl font-serif tracking-[0.2em] italic text-[#3e3830] mt-3 font-light">
                   10 сентября 2026
                 </p>
-                <p className="text-[10px] sm:text-xs tracking-[0.15em] font-sans text-stone-200 uppercase mt-1">
+                <p className="text-[10px] sm:text-xs tracking-[0.15em] font-sans text-stone-500 uppercase mt-1">
                   Четверг, 16:00
                 </p>
                 <motion.div
                   animate={{ y: [0, 10, 0] }}
                   transition={{ repeat: Infinity, duration: 2 }}
-                  className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 hover:text-white transition-colors cursor-pointer flex flex-col items-center gap-1"
+                  className="absolute bottom-10 left-1/2 -translate-x-1/2 text-stone-400 hover:text-[#896e4f] transition-colors cursor-pointer flex flex-col items-center gap-1"
                   onClick={() => {
                     const welcome = document.getElementById('welcome-section');
                     welcome?.scrollIntoView({ behavior: 'smooth' });
@@ -471,19 +458,7 @@ export default function App() {
               </div>
             </section>
 
-            <section className="relative py-28 px-4 overflow-hidden flex flex-col items-center justify-center min-h-[450px]">
-              {/* Video background */}
-              <div className="absolute inset-0 z-0">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                  src="https://b4701886-2e3c-4a60-9e9f-056bd416f1cc.selstorage.ru/IMG_8746.MOV"
-                />
-                <div className="absolute inset-0 bg-white/60" />
-              </div>
+            <section className="relative py-28 px-4 overflow-hidden flex flex-col items-center justify-center min-h-[450px] bg-[#e8e1d9]">
               {/* Transparent couple photo */}
               <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
                 <img
