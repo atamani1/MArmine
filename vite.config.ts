@@ -5,7 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
-    base: '/wedding-invitation/', // ЗАМЕНИТЕ НА НАЗВАНИЕ ВАШЕГО РЕПОЗИТОРИЯ
+    base: '/MArmine/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
