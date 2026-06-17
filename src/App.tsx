@@ -216,7 +216,7 @@ export default function App() {
                     <div className="relative rounded-[1.6rem] overflow-hidden aspect-[4/5] sm:aspect-[4/5]">
                       <img
                         className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-[4s]"
-                        src={DEFAULT_COUPLE_2}
+                        src={couple2Image}
                         alt="Мовсес и Армине"
                         loading="lazy"
                       />
