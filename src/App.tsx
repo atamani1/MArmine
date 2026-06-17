@@ -29,8 +29,9 @@ import { GuestRSVP } from './types';
 import couple1Image from './assets/images/couple_1_1781684979074.jpg?url';
 import couple2Image from './assets/images/couple_2_1781685000637.jpg?url';
 import bgMusic from './assets/bg-music.mp3?url';
+import newPhoto from './assets/images/0617.jpg?url';
 
-const DEFAULT_COUPLE_1 = couple1Image || 'https://via.placeholder.com/800x1000/ead8b1/896e4f?text=Мовсес+&+Армине';
+const DEFAULT_COUPLE_1 = newPhoto || couple1Image || 'https://via.placeholder.com/800x1000/ead8b1/896e4f?text=Мовсес+&+Армине';
 const DEFAULT_COUPLE_2 = couple2Image || 'https://via.placeholder.com/800x1000/dcb980/896e4f?text=Мовсес+&+Армине';
 
 const WEDDING_DATE = '2026-09-10T16:00:00';
