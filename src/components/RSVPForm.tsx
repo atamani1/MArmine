@@ -16,7 +16,7 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ onAddRSVP, targetDate }) => 
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg('');
 
@@ -27,21 +27,34 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ onAddRSVP, targetDate }) => 
 
     setIsSubmitting(true);
 
-    // Simulate short network delay for extreme visual satisfaction
-    setTimeout(() => {
-      const newRSVP: GuestRSVP = {
-        id: Math.random().toString(36).substr(2, 9),
-        fullName: fullName.trim(),
-        attendance,
-        drinks: [],
-        comment: comment.trim() || undefined,
-        createdAt: new Date().toISOString(),
-      };
+    const attendanceText = attendance === 'yes' ? 'Придёт' : attendance === 'yes_partner' ? 'Придёт с +1' : 'Не сможет';
 
-      onAddRSVP(newRSVP);
-      setIsSubmitting(false);
-      setIsSuccess(true);
-    }, 1200);
+    try {
+      await fetch('https://formspree.io/f/xzdqqvev', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: fullName.trim(),
+          attendance: attendanceText,
+          comment: comment.trim() || 'нет',
+        }),
+      });
+    } catch {
+      // Continue even if Formspree fails
+    }
+
+    const newRSVP: GuestRSVP = {
+      id: Math.random().toString(36).substr(2, 9),
+      fullName: fullName.trim(),
+      attendance,
+      drinks: [],
+      comment: comment.trim() || undefined,
+      createdAt: new Date().toISOString(),
+    };
+
+    onAddRSVP(newRSVP);
+    setIsSubmitting(false);
+    setIsSuccess(true);
   };
 
   return (
