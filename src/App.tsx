@@ -461,8 +461,7 @@ export default function App() {
               </div>
             </section>
 
-            <section className="relative py-24 px-4 bg-gradient-to-b from-[#fcfbf9] to-[#fffffa] border-t border-gold-200/20 overflow-hidden">
-              <img src={DEFAULT_COUPLE_1} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.07] sepia mix-blend-multiply pointer-events-none" />
+            <section className="relative py-24 px-4 bg-gradient-to-b from-[#fcfbf9] to-[#fffffa] border-t border-gold-200/20">
               <div className="max-w-2xl mx-auto rounded-3xl bg-white border border-gold-200/40 p-6 sm:p-12 shadow-[0_15px_40px_-5px_rgba(137,110,79,0.06)] relative overflow-hidden">
                 <div className="absolute inset-3 border border-neutral-100 rounded-2xl pointer-events-none" />
                 <div className="text-center relative z-10">
