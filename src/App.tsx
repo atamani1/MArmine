@@ -169,14 +169,6 @@ export default function App() {
                 />
               </div>
               <div className="relative z-20 text-center text-white px-4 max-w-2xl flex flex-col items-center">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: [0.4, 1, 0.4], scale: 1 }}
-                  transition={{ repeat: Infinity, duration: 3 }}
-                  className="mb-4 text-gold-200"
-                >
-                  <Sparkles className="w-8 h-8 filter drop-shadow-[0_2px_10px_rgba(255,255,255,0.4)]" />
-                </motion.div>
                 <p className="text-xs sm:text-sm font-sans tracking-[0.25em] text-gold-100 uppercase mb-4 font-light">
                   Приглашение на свадьбу
                 </p>
@@ -208,7 +200,7 @@ export default function App() {
             </header>
 
             <section id="welcome-section" className="relative py-20 px-4 bg-[#fffffa] overflow-hidden">
-              <img src={DEFAULT_COUPLE_1} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.04] mix-blend-multiply pointer-events-none" />
+              <img src={DEFAULT_COUPLE_1} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.07] sepia mix-blend-multiply pointer-events-none" />
               <div className="absolute top-0 right-0 w-32 h-32 opacity-25">
                 <LeafDecoration rotation={45} />
               </div>
@@ -290,7 +282,7 @@ export default function App() {
             </section>
 
             <section className="relative py-24 px-4 bg-[#fcfbf9] border-y border-gold-200/20 overflow-hidden">
-              <img src={DEFAULT_COUPLE_2} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.04] mix-blend-multiply pointer-events-none" />
+              <img src={DEFAULT_COUPLE_2} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.07] sepia mix-blend-multiply pointer-events-none" />
               <div className="max-w-xl mx-auto relative">
                 <div className="text-center mb-16">
                   <span className="text-[10px] tracking-[0.25em] font-sans font-semibold text-[#896e4f] uppercase block mb-1">
@@ -470,7 +462,7 @@ export default function App() {
             </section>
 
             <section className="relative py-24 px-4 bg-gradient-to-b from-[#fcfbf9] to-[#fffffa] border-t border-gold-200/20 overflow-hidden">
-              <img src={DEFAULT_COUPLE_1} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.04] mix-blend-multiply pointer-events-none" />
+              <img src={DEFAULT_COUPLE_1} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.07] sepia mix-blend-multiply pointer-events-none" />
               <div className="max-w-2xl mx-auto rounded-3xl bg-white border border-gold-200/40 p-6 sm:p-12 shadow-[0_15px_40px_-5px_rgba(137,110,79,0.06)] relative overflow-hidden">
                 <div className="absolute inset-3 border border-neutral-100 rounded-2xl pointer-events-none" />
                 <div className="text-center relative z-10">
