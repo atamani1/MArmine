@@ -208,6 +208,7 @@ export default function App() {
             </header>
 
             <section id="welcome-section" className="relative py-20 px-4 bg-[#fffffa] overflow-hidden">
+              <img src={DEFAULT_COUPLE_1} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.04] mix-blend-multiply pointer-events-none" />
               <div className="absolute top-0 right-0 w-32 h-32 opacity-25">
                 <LeafDecoration rotation={45} />
               </div>
@@ -288,7 +289,8 @@ export default function App() {
               </div>
             </section>
 
-            <section className="relative py-24 px-4 bg-[#fcfbf9] border-y border-gold-200/20">
+            <section className="relative py-24 px-4 bg-[#fcfbf9] border-y border-gold-200/20 overflow-hidden">
+              <img src={DEFAULT_COUPLE_2} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.04] mix-blend-multiply pointer-events-none" />
               <div className="max-w-xl mx-auto relative">
                 <div className="text-center mb-16">
                   <span className="text-[10px] tracking-[0.25em] font-sans font-semibold text-[#896e4f] uppercase block mb-1">
@@ -467,7 +469,8 @@ export default function App() {
               </div>
             </section>
 
-            <section className="relative py-24 px-4 bg-gradient-to-b from-[#fcfbf9] to-[#fffffa] border-t border-gold-200/20">
+            <section className="relative py-24 px-4 bg-gradient-to-b from-[#fcfbf9] to-[#fffffa] border-t border-gold-200/20 overflow-hidden">
+              <img src={DEFAULT_COUPLE_1} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.04] mix-blend-multiply pointer-events-none" />
               <div className="max-w-2xl mx-auto rounded-3xl bg-white border border-gold-200/40 p-6 sm:p-12 shadow-[0_15px_40px_-5px_rgba(137,110,79,0.06)] relative overflow-hidden">
                 <div className="absolute inset-3 border border-neutral-100 rounded-2xl pointer-events-none" />
                 <div className="text-center relative z-10">
@@ -531,8 +534,28 @@ export default function App() {
               </div>
             </section>
 
-            <section className="relative py-28 px-4 bg-[#e2e1db] overflow-hidden flex flex-col items-center justify-center min-h-[450px]">
-              <div className="absolute inset-0 bg-gradient-to-b from-stone-100/10 via-transparent to-stone-900/10 pointer-events-none" />
+            <section className="relative py-28 px-4 overflow-hidden flex flex-col items-center justify-center min-h-[450px]">
+              {/* Video background */}
+              <div className="absolute inset-0 z-0">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                  src="https://b4701886-2e3c-4a60-9e9f-056bd416f1cc.selstorage.ru/IMG_8746.MOV"
+                />
+                <div className="absolute inset-0 bg-white/60" />
+              </div>
+              {/* Transparent couple photo */}
+              <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+                <img
+                  src={DEFAULT_COUPLE_1}
+                  alt=""
+                  className="h-full w-full object-cover opacity-[0.07] mix-blend-multiply"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-b from-stone-100/10 via-transparent to-stone-900/10 pointer-events-none z-[1]" />
               <div className="relative z-10 text-center flex flex-col items-center">
                 <div className="flex items-center gap-1.5 justify-center mb-6">
                   <div className="w-7 h-[1px] bg-stone-400" />
@@ -547,7 +570,7 @@ export default function App() {
                 </p>
                 <CountdownTimer targetDate={WEDDING_DATE} />
                 <div className="mt-14 max-w-xs mx-auto text-xs text-stone-400 italic">
-                  «Семья — это шедевр природы»
+                  «Более же всего облекитесь в любовь, которая есть совокупность совершенства»
                 </div>
               </div>
             </section>
