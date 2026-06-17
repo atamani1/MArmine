@@ -13,9 +13,12 @@ interface EnvelopeProps {
 
 export const Envelope: React.FC<EnvelopeProps> = ({ guestName, onOpen }) => {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#f7f5f0] px-4 overflow-hidden select-none">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(219,190,140,0.15),transparent_60%)] pointer-events-none" />
-      <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[#a3b899]/10 rounded-full blur-3xl pointer-events-none" />
+    <div className="pearl-bg fixed inset-0 z-50 flex items-center justify-center px-4 overflow-hidden select-none">
+      <div className="pearl-layer pearl-layer-1" />
+      <div className="pearl-layer pearl-layer-2" />
+      <div className="pearl-layer pearl-layer-3" />
+      <div className="pearl-shimmer" />
+      <div className="pearl-folds" />
 
       <motion.div
         initial={{ opacity: 0, y: 30, scale: 0.95 }}

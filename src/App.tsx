@@ -28,6 +28,7 @@ import { GuestRSVP } from './types';
 // Исправляем импорт изображений
 import couple1Image from './assets/images/couple_1_1781684979074.jpg?url';
 import couple2Image from './assets/images/couple_2_1781685000637.jpg?url';
+import bgMusic from './assets/bg-music.mp3?url';
 
 const DEFAULT_COUPLE_1 = couple1Image || 'https://via.placeholder.com/800x1000/ead8b1/896e4f?text=Мовсес+&+Армине';
 const DEFAULT_COUPLE_2 = couple2Image || 'https://via.placeholder.com/800x1000/dcb980/896e4f?text=Мовсес+&+Армине';
@@ -120,7 +121,7 @@ export default function App() {
     <div className="relative min-h-screen">
       <audio
         ref={audioRef}
-        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
+        src={bgMusic}
         loop
         preload="auto"
       />
