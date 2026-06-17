@@ -1,0 +1,6 @@
+{
+  "name": "Мовсес & Армине",
+  "description": "Интерактивное свадебное приглашение / Interactive wedding invitation",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
