@@ -1,10 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
-  Volume2,
-  VolumeX,
   MapPin,
-  Calendar,
   Clock,
   Cake,
   Sparkles,
@@ -28,7 +25,6 @@ import { GuestRSVP } from './types';
 // Исправляем импорт изображений
 import couple1Image from './assets/images/couple_1_1781684979074.jpg?url';
 import couple2Image from './assets/images/couple_2_1781685000637.jpg?url';
-import bgMusic from './assets/bg-music.mp3?url';
 import newPhoto1 from './assets/images/couple_1_new.jpg?url';
 import newPhoto2 from './assets/images/couple_2_new.jpg?url';
 
@@ -43,10 +39,7 @@ export default function App() {
   const [isOpened, setIsOpened] = useState(false);
   const [guestName, setGuestName] = useState('');
   const [rsvps, setRsvps] = useState<GuestRSVP[]>([]);
-  const [isPlayingMusic, setIsPlayingMusic] = useState(false);
   const [selectedColor, setSelectedColor] = useState<number | null>(null);
-
-  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -82,33 +75,8 @@ export default function App() {
     localStorage.removeItem('wedding_rsvps');
   };
 
-  const handleToggleMusic = () => {
-    if (!audioRef.current) return;
-    audioRef.current.volume = 0.3;
-    if (isPlayingMusic) {
-      audioRef.current.pause();
-      setIsPlayingMusic(false);
-    } else {
-      audioRef.current.play().then(() => {
-         setIsPlayingMusic(true);
-      }).catch((e) => {
-         console.warn('Audio play was rejected by browser policy', e);
-      });
-    }
-  };
-
   const handleEnvelopeOpen = () => {
     setIsOpened(true);
-    setTimeout(() => {
-      if (audioRef.current) {
-        audioRef.current.volume = 0.3;
-        audioRef.current.play().then(() => {
-          setIsPlayingMusic(true);
-        }).catch((e) => {
-          console.warn('Audio autoplay failed, user needs to click icon manually', e);
-        });
-      }
-    }, 500);
   };
 
   const dressCodePalette = [
@@ -121,13 +89,6 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen">
-      <audio
-        ref={audioRef}
-        src={bgMusic}
-        loop
-        preload="auto"
-      />
-
       <AnimatePresence>
         {!isOpened ? (
           <Envelope guestName={guestName} onOpen={handleEnvelopeOpen} />
@@ -138,23 +99,6 @@ export default function App() {
             transition={{ duration: 1.5 }}
             className="w-full relative"
           >
-            <div className="fixed top-4 right-4 z-40">
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleToggleMusic}
-                className="p-3 bg-white/80 backdrop-blur-sm border border-gold-300 shadow-md rounded-full text-stone-600 hover:text-tilda-beige cursor-pointer"
-              >
-                {isPlayingMusic ? (
-                  <div className="relative">
-                    <Volume2 className="w-5 h-5" />
-                    <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-500 rounded-full animate-ping" />
-                  </div>
-                ) : (
-                  <VolumeX className="w-5 h-5" />
-                )}
-              </motion.button>
-            </div>
 
             <header className="relative w-screen h-screen flex flex-col items-center justify-center overflow-hidden">
               <div className="absolute inset-0 bg-black/40 z-10" />
@@ -221,7 +165,7 @@ export default function App() {
                 <h2 className="font-serif text-3xl sm:text-4xl text-stone-800 italic font-light mb-8 px-4 leading-relaxed">
                   {guestName ? guestName : 'Родные и Близкие!'}
                 </h2>
-                <div className="space-y-6 text-stone-600 font-sans font-light text-sm sm:text-base leading-relaxed px-4 max-w-lg mx-auto">
+                <div className="space-y-6 text-stone-700 font-sans font-light text-sm sm:text-base leading-relaxed px-4 max-w-lg mx-auto">
                   <p>
                     В нашей жизни состоится долгожданное событие —{' '}
                     <span className="font-medium text-tilda-beige">День нашей свадьбы!</span> 🌹
@@ -312,7 +256,7 @@ export default function App() {
                         <Clock className="w-4 h-4 text-gold-400" />
                         Сбор гостей
                       </h4>
-                      <p className="text-xs sm:text-sm text-stone-500 mt-1 font-light leading-relaxed">
+                      <p className="text-xs sm:text-sm text-stone-600 mt-1 font-light leading-relaxed">
                         Приветственный сбор, знакомство приглашённых гостей на веранде ресторана и приятная предпраздничная атмосфера. Время сделать первые памятные кадры.
                       </p>
                     </div>
@@ -335,7 +279,7 @@ export default function App() {
                         <Sparkles className="w-4 h-4 text-gold-400" />
                         Свадебное торжество
                       </h4>
-                      <p className="text-xs sm:text-sm text-stone-500 mt-1 font-light leading-relaxed">
+                      <p className="text-xs sm:text-sm text-stone-600 mt-1 font-light leading-relaxed">
                         Торжественная церемония и начало официального ужина. Вас ждут тёплые поздравления, изысканный праздничный банкет, живая музыка и трогательные признания.
                       </p>
                     </div>
@@ -356,7 +300,7 @@ export default function App() {
                         <Cake className="w-4 h-4 text-gold-400" />
                         Вынос торта
                       </h4>
-                      <p className="text-xs sm:text-sm text-stone-500 mt-1 font-light leading-relaxed">
+                      <p className="text-xs sm:text-sm text-stone-600 mt-1 font-light leading-relaxed">
                         Кульминационный сладкий момент свадебного банкета — эффектное появление и разрезание авторского праздничного торта.
                       </p>
                     </div>
@@ -379,7 +323,7 @@ export default function App() {
                         <Flame className="w-4 h-4 text-gold-400" />
                         Финал вечера
                       </h4>
-                      <p className="text-xs sm:text-sm text-stone-500 mt-1 font-light leading-relaxed">
+                      <p className="text-xs sm:text-sm text-stone-600 mt-1 font-light leading-relaxed">
                         Завершение прекрасного праздника, теплые слова благодарности и прощальные объятия. Мы от всего сердца благодарим за то, что Вы разделили этот важный день с нами!
                       </p>
                     </div>
@@ -404,10 +348,10 @@ export default function App() {
                       </div>
                       <div>
                         <h4 className="font-serif text-lg text-stone-800 font-medium">{VENUE_NAME}</h4>
-                        <p className="text-sm text-stone-500 font-light mt-1">{VENUE_ADDRESS}</p>
+                        <p className="text-sm text-stone-600 font-light mt-1">{VENUE_ADDRESS}</p>
                       </div>
                     </div>
-                    <p className="text-xs sm:text-sm text-stone-500 leading-relaxed font-light">
+                    <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-light">
                       Мы выбрали замечательный ресторан «Робинзон Крузо» — прекрасный оазис уюта и великолепной кухни. Будем безмерно рады видеть Вас здесь на нашем свадебном ужине!
                     </p>
                     <div className="flex flex-wrap gap-2.5 pt-4">
@@ -445,7 +389,7 @@ export default function App() {
                         <span className="text-xs uppercase font-sans font-semibold tracking-widest text-[#896e4f] block">
                           Робинзон Крузо
                         </span>
-                        <span className="text-[10px] text-stone-500 block mt-1 font-light">
+                        <span className="text-[10px] text-stone-600 block mt-1 font-light">
                           Краснодар, ул. Тепличная, 78/1
                         </span>
                       </div>
@@ -474,7 +418,7 @@ export default function App() {
                     Пожелания по Dress-code
                   </h3>
                   <div className="w-12 h-[1px] bg-gold-200 mx-auto mb-6" />
-                  <p className="text-stone-600 font-sans font-light text-sm sm:text-base leading-relaxed max-w-lg mx-auto mb-10">
+                  <p className="text-stone-700 font-sans font-light text-sm sm:text-base leading-relaxed max-w-lg mx-auto mb-10">
                     Нам будет приятно, если вы выберете утонченный наряд в праздничном и элегантном стиле. <span className="font-semibold text-tilda-beige">Ваш комфорт важнее всего!</span> Будем очень рады, если Ваши платья и костюмы будут соответствовать гармоничной цветовой гамме нашего торжества:
                   </p>
                   <div className="flex flex-wrap justify-center gap-4 mb-10 select-none">
@@ -498,7 +442,7 @@ export default function App() {
                             </AnimatePresence>
                           )}
                         </motion.button>
-                        <span className="text-[10px] text-stone-500 font-medium mt-1.5 uppercase tracking-widest">{color.name}</span>
+                        <span className="text-[10px] text-stone-600 font-medium mt-1.5 uppercase tracking-widest">{color.name}</span>
                       </div>
                     ))}
                   </div>
@@ -558,7 +502,7 @@ export default function App() {
                 <h3 className="font-serif text-3xl sm:text-4xl text-stone-850 italic font-light mb-1">
                   До свадьбы осталось:
                 </h3>
-                <p className="text-xs text-stone-500 uppercase tracking-widest mb-10">
+                <p className="text-xs text-stone-600 uppercase tracking-widest mb-10">
                   Мовсес & Армине // 10 сентября 2026
                 </p>
                 <CountdownTimer targetDate={WEDDING_DATE} />
@@ -577,7 +521,7 @@ export default function App() {
 
             <footer className="bg-stone-950 text-white/50 text-center py-10 text-xs font-light tracking-widest border-t border-stone-900">
               <p>© МОВСЕС & АРМИНЕ, 2026. ВСЕ ПРАВА ЗАЩИЩЕНЫ</p>
-              <p className="text-[10px] text-stone-600 mt-2 uppercase tracking-wide">
+              <p className="text-[10px] text-stone-700 mt-2 uppercase tracking-wide">
                 Сделано с любовью // Wedding Site Prototype
               </p>
             </footer>
