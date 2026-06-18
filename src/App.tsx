@@ -19,7 +19,7 @@ import { Envelope } from './components/Envelope';
 import { CountdownTimer } from './components/CountdownTimer';
 import { RSVPForm } from './components/RSVPForm';
 import { AdminPanel } from './components/AdminPanel';
-import { LeafDecoration } from './components/LeafDecoration';
+
 import { GuestRSVP } from './types';
 
 // Исправляем импорт изображений
@@ -100,27 +100,38 @@ export default function App() {
             className="w-full relative"
           >
 
-            <header className="relative w-screen h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-[#f5f0e8] to-[#e8e0d4]">
-              <div className="relative z-20 text-center px-4 max-w-2xl flex flex-col items-center">
-                <p className="text-xs sm:text-sm font-sans tracking-[0.25em] text-[#896e4f]/80 uppercase mb-4 font-light">
+            <header className="relative w-screen h-screen flex flex-col items-center justify-center overflow-hidden">
+              <div className="absolute inset-0 bg-black/40 z-10" />
+              <div className="absolute inset-0 w-full h-full scale-105 pointer-events-none">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover object-center"
+                  src="/0618.mp4"
+                />
+              </div>
+              <div className="relative z-20 text-center text-white px-4 max-w-2xl flex flex-col items-center">
+                <p className="text-xs sm:text-sm font-sans tracking-[0.25em] text-gold-100 uppercase mb-4 font-light">
                   Приглашение на свадьбу
                 </p>
-                <h1 className="font-serif text-5xl sm:text-7xl tracking-wide text-[#3e3830] mb-6 select-none leading-tight">
+                <h1 className="font-serif text-5xl sm:text-7xl tracking-wide text-[#fffffa] mb-6 select-none leading-tight drop-shadow-[0_5px_20px_rgba(0,0,0,0.45)]">
                   Мовсес
-                  <span className="block italic text-3xl sm:text-4xl text-[#896e4f] my-2 font-normal">и</span>
+                  <span className="block italic text-3xl sm:text-4xl text-gold-200 my-2 font-normal">и</span>
                   Армине
                 </h1>
-                <div className="w-24 h-[1px] bg-[#dcb980]/60 my-2" />
-                <p className="text-lg sm:text-xl font-serif tracking-[0.2em] italic text-[#3e3830] mt-3 font-light">
+                <div className="w-24 h-[1px] bg-gold-200/60 my-2" />
+                <p className="text-lg sm:text-xl font-serif tracking-[0.2em] italic text-[#fffffa] mt-3 font-light">
                   10 сентября 2026
                 </p>
-                <p className="text-[10px] sm:text-xs tracking-[0.15em] font-sans text-stone-500 uppercase mt-1">
+                <p className="text-[10px] sm:text-xs tracking-[0.15em] font-sans text-stone-200 uppercase mt-1">
                   Четверг, 16:00
                 </p>
                 <motion.div
                   animate={{ y: [0, 10, 0] }}
                   transition={{ repeat: Infinity, duration: 2 }}
-                  className="absolute bottom-10 left-1/2 -translate-x-1/2 text-stone-400 hover:text-[#896e4f] transition-colors cursor-pointer flex flex-col items-center gap-1"
+                  className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 hover:text-white transition-colors cursor-pointer flex flex-col items-center gap-1"
                   onClick={() => {
                     const welcome = document.getElementById('welcome-section');
                     welcome?.scrollIntoView({ behavior: 'smooth' });
@@ -134,12 +145,7 @@ export default function App() {
 
             <section id="welcome-section" className="relative py-20 px-4 bg-[#fffffa] overflow-hidden">
               <img src={DEFAULT_COUPLE_1} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.07] sepia mix-blend-multiply pointer-events-none" />
-              <div className="absolute top-0 right-0 w-32 h-32 opacity-25">
-                <LeafDecoration rotation={45} />
-              </div>
-              <div className="absolute bottom-0 left-0 w-32 h-32 opacity-25">
-                <LeafDecoration rotation={225} flip />
-              </div>
+
               <div className="max-w-2xl mx-auto text-center relative z-10">
                 <div className="flex justify-center mb-6">
                   <div className="w-1.5 h-1.5 rounded-full bg-gold-400 mx-1 animate-pulse" />
@@ -449,10 +455,7 @@ export default function App() {
             </section>
 
             <section className="relative py-24 px-4 bg-[#fffffa]">
-              <div className="absolute top-1/2 left-0 right-0 h-[100px] pointer-events-none -translate-y-1/2 opacity-25 flex justify-between px-10">
-                <LeafDecoration rotation={90} />
-                <LeafDecoration rotation={270} flip />
-              </div>
+
               <div id="rsvp-section" className="relative z-10 max-w-xl mx-auto">
                 <RSVPForm onAddRSVP={handleAddRSVP} targetDate={WEDDING_DATE} />
               </div>
