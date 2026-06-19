@@ -116,9 +116,9 @@ export default function App() {
                 <p className="text-xs sm:text-sm font-sans tracking-[0.25em] text-gold-100 uppercase mb-4 font-light">
                   Приглашение на свадьбу
                 </p>
-                <h1 className="font-serif text-5xl sm:text-7xl tracking-wide text-[#fffffa] mb-6 select-none leading-tight drop-shadow-[0_5px_20px_rgba(0,0,0,0.45)]">
+                <h1 className="font-serif text-5xl sm:text-7xl tracking-[0.15em] uppercase text-[#fffffa] mb-6 select-none leading-tight drop-shadow-[0_5px_20px_rgba(0,0,0,0.45)]">
                   Мовсес
-                  <span className="block italic text-3xl sm:text-4xl text-gold-200 my-2 font-normal">и</span>
+                  <span className="block italic text-3xl sm:text-4xl text-gold-200 my-2 font-normal lowercase tracking-widest">и</span>
                   Армине
                 </h1>
                 <div className="w-24 h-[1px] bg-gold-200/60 my-2" />

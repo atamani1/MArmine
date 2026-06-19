@@ -44,7 +44,7 @@ export const Envelope: React.FC<EnvelopeProps> = ({ guestName, onOpen }) => {
           </div>
         </div>
 
-        <h2 className="font-serif text-3xl sm:text-4xl font-light tracking-wide text-[#3e3830] mb-2 relative z-10">
+        <h2 className="font-serif text-3xl sm:text-4xl font-light tracking-[0.15em] uppercase text-[#3e3830] mb-2 relative z-10">
           Мовсес & Армине
         </h2>
         <div className="text-xs uppercase font-medium tracking-widest text-[#896e4f]/80 mb-8 relative z-10">
