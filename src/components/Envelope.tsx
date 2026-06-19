@@ -13,13 +13,7 @@ interface EnvelopeProps {
 
 export const Envelope: React.FC<EnvelopeProps> = ({ guestName, onOpen }) => {
   return (
-    <div className="pearl-bg fixed inset-0 z-50 flex items-center justify-center px-4 overflow-hidden select-none">
-      <div className="pearl-layer pearl-layer-1" />
-      <div className="pearl-layer pearl-layer-2" />
-      <div className="pearl-layer pearl-layer-3" />
-      <div className="pearl-shimmer" />
-      <div className="pearl-folds" />
-
+    <div className="fixed inset-0 z-50 flex items-center justify-center px-4 overflow-hidden select-none" style={{ background: 'linear-gradient(135deg, #f5f0e8 0%, #ede6d8 50%, #f2ece3 100%)' }}>
       <motion.div
         initial={{ opacity: 0, y: 30, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
