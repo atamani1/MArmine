@@ -106,9 +106,10 @@ export default function App() {
           >
             <button
               onClick={toggleMusic}
-              className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-white/80 backdrop-blur-md border border-gold-200 rounded-full shadow-lg flex items-center justify-center text-[#896e4f] hover:bg-gold-50 transition-colors"
+              className="fixed bottom-6 right-6 z-[100] w-14 h-14 bg-[#896e4f]/90 backdrop-blur-md border-2 border-gold-300 rounded-full shadow-xl flex items-center justify-center text-white hover:bg-[#896e4f] transition-colors cursor-pointer"
+              aria-label="Музыка"
             >
-              {isPlaying ? <Music className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
+              {isPlaying ? <Music className="w-6 h-6" /> : <VolumeX className="w-6 h-6" />}
             </button>
 
             <header className="relative w-screen h-screen flex flex-col items-center justify-center overflow-hidden">
