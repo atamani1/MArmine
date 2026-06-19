@@ -187,11 +187,11 @@ export default function App() {
               </div>
             </section>
 
-            <section className="w-full">
+            <section className="w-full bg-[#f5f0e8]">
               <img 
                 src={NEW_COUPLE_PHOTO} 
                 alt="Мовсес и Армине" 
-                className="w-full h-auto object-cover max-h-[70vh]"
+                className="w-full h-auto object-contain max-h-[80vh] opacity-90"
                 loading="lazy"
               />
             </section>
