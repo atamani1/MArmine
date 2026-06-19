@@ -7,6 +7,8 @@ import {
   Sparkles,
   ChevronDown,
   Heart,
+  Music,
+  VolumeX,
 } from 'lucide-react';
 
 import { Envelope } from './components/Envelope';
@@ -33,6 +35,8 @@ export default function App() {
   const [isOpened, setIsOpened] = useState(false);
   const [guestName, setGuestName] = useState('');
   const [rsvps, setRsvps] = useState<GuestRSVP[]>([]);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = React.useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -70,10 +74,25 @@ export default function App() {
 
   const handleEnvelopeOpen = () => {
     setIsOpened(true);
+    setTimeout(() => {
+      audioRef.current?.play().catch(() => {});
+      setIsPlaying(true);
+    }, 500);
+  };
+
+  const toggleMusic = () => {
+    if (!audioRef.current) return;
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(() => {});
+    }
+    setIsPlaying(!isPlaying);
   };
 
   return (
     <div className="relative min-h-screen">
+      <audio ref={audioRef} src="./svadba.mp3" loop />
       <AnimatePresence>
         {!isOpened ? (
           <Envelope guestName={guestName} onOpen={handleEnvelopeOpen} />
@@ -84,6 +103,12 @@ export default function App() {
             transition={{ duration: 1.5 }}
             className="w-full relative"
           >
+            <button
+              onClick={toggleMusic}
+              className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-white/80 backdrop-blur-md border border-gold-200 rounded-full shadow-lg flex items-center justify-center text-[#896e4f] hover:bg-gold-50 transition-colors"
+            >
+              {isPlaying ? <Music className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
+            </button>
 
             <header className="relative w-screen h-screen flex flex-col items-center justify-center overflow-hidden">
               <div className="absolute inset-0 bg-black/40 z-10" />
