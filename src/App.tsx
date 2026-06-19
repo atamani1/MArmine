@@ -98,7 +98,7 @@ export default function App() {
                 />
               </div>
               <div className="relative z-20 text-center text-white px-4 max-w-2xl flex flex-col items-center">
-                <p className="text-xs sm:text-sm font-sans tracking-[0.25em] text-gold-100 uppercase mb-4 font-light">
+                <p className="text-sm sm:text-base font-sans tracking-[0.25em] text-gold-100 uppercase mb-4 font-light">
                   Приглашение на свадьбу
                 </p>
                 <h1 className="font-serif text-5xl sm:text-7xl tracking-[0.15em] uppercase text-[#fffffa] mb-6 select-none leading-tight drop-shadow-[0_5px_20px_rgba(0,0,0,0.45)]">
@@ -137,13 +137,13 @@ export default function App() {
                   <div className="w-1.5 h-1.5 rounded-full bg-gold-500 mx-1" />
                   <div className="w-1.5 h-1.5 rounded-full bg-gold-400 mx-1 animate-pulse" />
                 </div>
-                <span className="text-xs font-semibold uppercase tracking-widest text-[#896e4f]/80 block mb-2">
+                <span className="text-sm font-semibold uppercase tracking-widest text-[#896e4f] block mb-2">
                   Дорогие
                 </span>
-                <h2 className="font-serif text-3xl sm:text-4xl text-stone-800 italic font-light mb-8 px-4 leading-relaxed">
+                <h2 className="font-serif text-4xl sm:text-5xl text-stone-800 italic font-light mb-8 px-4 leading-relaxed">
                   {guestName ? guestName : 'Родные и Близкие!'}
                 </h2>
-                <div className="space-y-6 text-stone-700 font-sans font-light text-sm sm:text-base leading-relaxed px-4 max-w-lg mx-auto">
+                <div className="space-y-6 text-stone-800 font-sans font-light text-base sm:text-lg leading-relaxed px-4 max-w-lg mx-auto">
                   <p>
                     В нашей жизни состоится долгожданное событие —{' '}
                     <span className="font-medium text-tilda-beige">День нашей свадьбы!</span> 🌹
@@ -161,40 +161,40 @@ export default function App() {
               </div>
             </section>
 
-            <section className="relative py-24 px-4 bg-[#fcfbf9] border-y border-gold-200/20 overflow-hidden">
+            <section className="relative py-24 px-6 sm:px-8 bg-[#fcfbf9] border-y border-gold-200/20 overflow-hidden">
               <img src={DEFAULT_COUPLE_2} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.07] sepia mix-blend-multiply pointer-events-none" />
-              <div className="max-w-xl mx-auto relative">
+              <div className="max-w-2xl mx-auto relative">
                 <div className="text-center mb-16">
-                  <span className="text-[10px] tracking-[0.25em] font-sans font-semibold text-[#896e4f] uppercase block mb-1">
+                  <span className="text-sm tracking-[0.25em] font-sans font-semibold text-[#896e4f] uppercase block mb-1">
                     Свадебный
                   </span>
-                  <h3 className="font-serif text-3xl sm:text-4xl text-stone-800 italic font-light">
+                  <h3 className="font-serif text-4xl sm:text-5xl text-stone-800 italic font-light">
                     План Дня
                   </h3>
                   <div className="w-12 h-[1px] bg-gold-300 mx-auto mt-4" />
                 </div>
-                <div className="absolute left-[27px] sm:left-1/2 top-24 bottom-12 w-[1px] bg-gradient-to-b from-gold-300 via-gold-200 to-transparent -translate-x-1/2" />
-                <div className="space-y-12">
+                <div className="absolute left-[35px] sm:left-[45%] top-24 bottom-12 w-[1px] bg-gradient-to-b from-gold-300 via-gold-200 to-transparent -translate-x-1/2" />
+                <div className="space-y-14">
                   <motion.div
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-100px' }}
                     initial={{ opacity: 0, y: 30 }}
                     className="flex flex-col sm:flex-row items-start sm:items-center relative"
                   >
-                    <div className="absolute left-0 sm:left-1/2 w-14 h-14 bg-white border border-gold-300 rounded-full flex flex-col items-center justify-center -translate-x-1/2 shadow-sm z-10">
-                      <span className="text-xs uppercase font-semibold text-[#896e4f] leading-none">16:30</span>
-                      <span className="text-[8px] text-stone-400 font-medium">Сбор</span>
+                    <div className="absolute left-0 sm:left-[45%] w-16 h-16 bg-white border border-gold-300 rounded-full flex flex-col items-center justify-center -translate-x-1/2 shadow-sm z-10">
+                      <span className="text-sm uppercase font-semibold text-[#896e4f] leading-none">16:30</span>
+                      <span className="text-[9px] text-stone-500 font-medium">Сбор</span>
                     </div>
-                    <div className="pl-16 sm:pl-0 sm:w-1/2 sm:pr-12 text-left sm:text-right">
-                      <h4 className="font-serif text-lg text-stone-800 font-medium flex items-center gap-1.5 justify-start sm:justify-end">
-                        <Clock className="w-4 h-4 text-gold-400" />
+                    <div className="pl-20 sm:pl-0 sm:w-[calc(50%-2rem)] sm:pr-12 text-left sm:text-right">
+                      <h4 className="font-serif text-xl sm:text-2xl text-stone-800 font-medium flex items-center gap-1.5 justify-start sm:justify-end">
                         Сбор гостей
+                        <Clock className="w-5 h-5 text-gold-400" />
                       </h4>
-                      <p className="text-xs sm:text-sm text-stone-600 mt-1 font-light leading-relaxed">
+                      <p className="text-sm sm:text-base text-stone-700 mt-2 font-light leading-relaxed">
                         Приветственный сбор на веранде ресторана и приятная предпраздничная атмосфера.
                       </p>
                     </div>
-                    <div className="sm:w-1/2" />
+                    <div className="sm:w-[calc(50%-2rem)]" />
                   </motion.div>
 
                   <motion.div
@@ -203,17 +203,17 @@ export default function App() {
                     initial={{ opacity: 0, y: 30 }}
                     className="flex flex-col sm:flex-row items-start sm:items-center relative"
                   >
-                    <div className="absolute left-0 sm:left-1/2 w-14 h-14 bg-white border border-gold-300 rounded-full flex flex-col items-center justify-center -translate-x-1/2 shadow-sm z-10">
-                      <span className="text-xs uppercase font-semibold text-[#896e4f] leading-none">17:30</span>
-                      <span className="text-[8px] text-stone-400 font-medium">Венчание</span>
+                    <div className="absolute left-0 sm:left-[45%] w-16 h-16 bg-white border border-gold-300 rounded-full flex flex-col items-center justify-center -translate-x-1/2 shadow-sm z-10">
+                      <span className="text-sm uppercase font-semibold text-[#896e4f] leading-none">17:30</span>
+                      <span className="text-[9px] text-stone-500 font-medium">Венчание</span>
                     </div>
-                    <div className="sm:w-1/2" />
-                    <div className="pl-16 sm:pl-12 sm:w-1/2 text-left">
-                      <h4 className="font-serif text-lg text-stone-800 font-medium flex items-center gap-1.5">
-                        <Sparkles className="w-4 h-4 text-gold-400" />
+                    <div className="sm:w-[calc(50%-2rem)]" />
+                    <div className="pl-20 sm:pl-12 sm:w-[calc(50%-2rem)] text-left">
+                      <h4 className="font-serif text-xl sm:text-2xl text-stone-800 font-medium flex items-center gap-1.5">
+                        <Sparkles className="w-5 h-5 text-gold-400" />
                         Венчание
                       </h4>
-                      <p className="text-xs sm:text-sm text-stone-600 mt-1 font-light leading-relaxed">
+                      <p className="text-sm sm:text-base text-stone-700 mt-2 font-light leading-relaxed">
                         Торжественная церемония бракосочетания.
                       </p>
                     </div>
@@ -225,20 +225,20 @@ export default function App() {
                     initial={{ opacity: 0, y: 30 }}
                     className="flex flex-col sm:flex-row items-start sm:items-center relative"
                   >
-                    <div className="absolute left-0 sm:left-1/2 w-14 h-14 bg-white border border-gold-300 rounded-full flex flex-col items-center justify-center -translate-x-1/2 shadow-sm z-10">
-                      <span className="text-xs uppercase font-semibold text-[#896e4f] leading-none">18:00</span>
-                      <span className="text-[8px] text-stone-400 font-medium">Банкет</span>
+                    <div className="absolute left-0 sm:left-[45%] w-16 h-16 bg-white border border-gold-300 rounded-full flex flex-col items-center justify-center -translate-x-1/2 shadow-sm z-10">
+                      <span className="text-sm uppercase font-semibold text-[#896e4f] leading-none">18:00</span>
+                      <span className="text-[9px] text-stone-500 font-medium">Банкет</span>
                     </div>
-                    <div className="pl-16 sm:pl-0 sm:w-1/2 sm:pr-12 text-left sm:text-right">
-                      <h4 className="font-serif text-lg text-stone-800 font-medium flex items-center gap-1.5 justify-start sm:justify-end">
-                        <Cake className="w-4 h-4 text-gold-400" />
+                    <div className="pl-20 sm:pl-0 sm:w-[calc(50%-2rem)] sm:pr-12 text-left sm:text-right">
+                      <h4 className="font-serif text-xl sm:text-2xl text-stone-800 font-medium flex items-center gap-1.5 justify-start sm:justify-end">
                         Банкет
+                        <Cake className="w-5 h-5 text-gold-400" />
                       </h4>
-                      <p className="text-xs sm:text-sm text-stone-600 mt-1 font-light leading-relaxed">
+                      <p className="text-sm sm:text-base text-stone-700 mt-2 font-light leading-relaxed">
                         Праздничный ужин, поздравления и тёплые моменты.
                       </p>
                     </div>
-                    <div className="sm:w-1/2" />
+                    <div className="sm:w-[calc(50%-2rem)]" />
                   </motion.div>
                 </div>
               </div>
@@ -248,10 +248,10 @@ export default function App() {
               <div className="max-w-3xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                   <div className="space-y-6 text-left">
-                    <span className="text-[10px] tracking-[0.25em] font-sans font-semibold text-[#896e4f] uppercase block">
+                    <span className="text-sm tracking-[0.25em] font-sans font-semibold text-[#896e4f] uppercase block">
                       Где все состоится?
                     </span>
-                    <h3 className="font-serif text-3xl sm:text-4xl text-stone-800 font-light italic leading-tight">
+                    <h3 className="font-serif text-4xl sm:text-5xl text-stone-800 font-light italic leading-tight">
                       Локация и Место
                     </h3>
                     <div className="flex gap-3.5 items-start mt-8">
@@ -259,11 +259,11 @@ export default function App() {
                         <MapPin className="w-5 h-5" />
                       </div>
                       <div>
-                        <h4 className="font-serif text-lg text-stone-800 font-medium">{VENUE_NAME}</h4>
-                        <p className="text-sm text-stone-600 font-light mt-1">{VENUE_ADDRESS}</p>
+                        <h4 className="font-serif text-xl text-stone-800 font-medium">{VENUE_NAME}</h4>
+                        <p className="text-base text-stone-700 font-light mt-1">{VENUE_ADDRESS}</p>
                       </div>
                     </div>
-                    <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-light">
+                    <p className="text-sm sm:text-base text-stone-700 leading-relaxed font-light">
                       Мы выбрали замечательный ресторан «Робинзон Крузо» — прекрасный оазис уюта и великолепной кухни. Будем безмерно рады видеть Вас здесь на нашем свадебном ужине!
                     </p>
                     <div className="flex flex-wrap gap-2.5 pt-4">
@@ -342,10 +342,10 @@ export default function App() {
                   <Heart className="w-4 h-4 text-tilda-beige fill-[#896e4f]/20 animate-pulse" />
                   <div className="w-7 h-[1px] bg-stone-400" />
                 </div>
-                <h3 className="font-serif text-3xl sm:text-4xl text-stone-850 italic font-light mb-1">
+                <h3 className="font-serif text-4xl sm:text-5xl text-stone-800 italic font-light mb-1">
                   До свадьбы осталось:
                 </h3>
-                <p className="text-xs text-stone-600 uppercase tracking-widest mb-10">
+                <p className="text-sm text-stone-700 uppercase tracking-widest mb-10">
                   Мовсес & Армине // 10 сентября 2026
                 </p>
                 <CountdownTimer targetDate={WEDDING_DATE} />
