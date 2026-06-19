@@ -28,6 +28,7 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ onAddRSVP, targetDate }) => 
     setIsSubmitting(true);
 
     const attendanceText = attendance === 'yes' ? 'Придёт' : attendance === 'yes_partner' ? 'Придёт с +1' : 'Не сможет';
+    const attendanceEmoji = attendance === 'yes' ? '✅' : attendance === 'yes_partner' ? '💑' : '❌';
 
     try {
       await fetch('https://formspree.io/f/xzdqqvev', {
@@ -41,6 +42,25 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ onAddRSVP, targetDate }) => 
       });
     } catch {
       // Continue even if Formspree fails
+    }
+
+    // Telegram notification
+    const telegramToken = '8681595433:AAHUxyHAFs2wqzWMJWBQJd-dBQNqfURtILw';
+    const chatId = '-5333084146';
+    const message = `💌 *Новый ответ на RSVP*\n\n👤 *Гость:* ${fullName.trim()}\n${attendanceEmoji} *Статус:* ${attendanceText}\n💬 *Комментарий:* ${comment.trim() || 'нет'}`;
+
+    try {
+      await fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+          parse_mode: 'Markdown',
+        }),
+      });
+    } catch {
+      // Continue even if Telegram fails
     }
 
     const newRSVP: GuestRSVP = {
