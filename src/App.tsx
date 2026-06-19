@@ -156,7 +156,6 @@ export default function App() {
             </header>
 
             <section id="welcome-section" className="relative py-24 px-6 bg-[#fffffa] overflow-hidden">
-              <img src={DEFAULT_COUPLE_1} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.07] sepia mix-blend-multiply pointer-events-none" />
 
               <div className="max-w-2xl mx-auto text-center relative z-10">
                 <div className="flex justify-center mb-6">
@@ -188,8 +187,16 @@ export default function App() {
               </div>
             </section>
 
+            <section className="w-full">
+              <img 
+                src={NEW_COUPLE_PHOTO} 
+                alt="Мовсес и Армине" 
+                className="w-full h-auto object-cover max-h-[70vh]"
+                loading="lazy"
+              />
+            </section>
+
             <section className="relative py-28 px-8 sm:px-12 bg-[#fcfbf9] border-y border-gold-200/20 overflow-hidden">
-              <img src={DEFAULT_COUPLE_2} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.07] sepia mix-blend-multiply pointer-events-none" />
               <div className="max-w-2xl mx-auto relative">
                 <div className="text-center mb-16">
                   <span className="text-base tracking-[0.25em] font-sans font-semibold text-[#896e4f] uppercase block mb-2">
