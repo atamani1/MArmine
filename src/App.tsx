@@ -109,7 +109,7 @@ export default function App() {
                   muted
                   playsInline
                   className="w-full h-full object-cover object-center"
-                  src="/0618.mp4"
+                  src="./0618.mp4"
                 />
               </div>
               <div className="relative z-20 text-center text-white px-4 max-w-2xl flex flex-col items-center">
