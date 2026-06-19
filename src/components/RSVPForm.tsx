@@ -172,10 +172,10 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ onAddRSVP, targetDate }) => 
           {/* Comment input */}
           <div className="space-y-1.5">
             <label className="block text-xs font-semibold uppercase tracking-widest text-stone-600">
-              Пожелания по кухне, аллергии или комментарий
+              Комментарий
             </label>
             <textarea
-              placeholder="Например: предпочтительно рыбное меню, аллергия на орехи, вегетарианец..."
+              placeholder="Ваши пожелания или комментарий..."
               value={comment}
               onChange={(e) => setComment(e.target.value)}
               rows={3}
