@@ -44,20 +44,14 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ onAddRSVP, targetDate }) => 
       // Continue even if Formspree fails
     }
 
-    // Telegram notification
-    const telegramToken = '8681595433:AAHUxyHAFs2wqzWMJWBQJd-dBQNqfURtILw';
-    const chatId = '-5333084146';
+    // Telegram notification via serverless function
     const message = `💌 *Новый ответ на RSVP*\n\n👤 *Гость:* ${fullName.trim()}\n${attendanceEmoji} *Статус:* ${attendanceText}\n💬 *Комментарий:* ${comment.trim() || 'нет'}`;
 
     try {
-      await fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
+      await fetch('/api/telegram', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: message,
-          parse_mode: 'Markdown',
-        }),
+        body: JSON.stringify({ message }),
       });
     } catch {
       // Continue even if Telegram fails
