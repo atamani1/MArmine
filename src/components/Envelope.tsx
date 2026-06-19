@@ -46,9 +46,6 @@ export const Envelope: React.FC<EnvelopeProps> = ({ guestName, onOpen }) => {
         </div>
 
         <div className="mb-10 px-4 relative z-10">
-          <span className="text-stone-400 font-serif italic text-sm block mb-1">
-            Дорогой гость,
-          </span>
           <h1 className="font-serif text-2xl sm:text-3xl font-light text-tilda-beige italic leading-relaxed">
             {guestName ? guestName : "Дорогие Родные и Близкие!"}
           </h1>
