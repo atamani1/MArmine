@@ -5,14 +5,8 @@ import {
   Clock,
   Cake,
   Sparkles,
-  Flame,
   ChevronDown,
-  Gift,
-  Palette,
   Heart,
-  Music,
-  Maximize2,
-  Check
 } from 'lucide-react';
 
 import { Envelope } from './components/Envelope';
@@ -39,7 +33,6 @@ export default function App() {
   const [isOpened, setIsOpened] = useState(false);
   const [guestName, setGuestName] = useState('');
   const [rsvps, setRsvps] = useState<GuestRSVP[]>([]);
-  const [selectedColor, setSelectedColor] = useState<number | null>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -78,14 +71,6 @@ export default function App() {
   const handleEnvelopeOpen = () => {
     setIsOpened(true);
   };
-
-  const dressCodePalette = [
-    { name: 'Пудровый нюд', bg: 'bg-[#f4efe8]', hex: '#f4efe8' },
-    { name: 'Дымчатая роза', bg: 'bg-[#e2cdc6]', hex: '#e2cdc6' },
-    { name: 'Пыльный шалфей', bg: 'bg-[#b6c5b2]', hex: '#b6c5b2' },
-    { name: 'Песочный кварц', bg: 'bg-[#dfcebe]', hex: '#dfcebe' },
-    { name: 'Золотой шелк', bg: 'bg-[#e2c1a2]', hex: '#e2c1a2' },
-  ];
 
   return (
     <div className="relative min-h-screen">
@@ -126,7 +111,7 @@ export default function App() {
                   10 сентября 2026
                 </p>
                 <p className="text-[10px] sm:text-xs tracking-[0.15em] font-sans text-stone-200 uppercase mt-1">
-                  Четверг, 16:00
+                  Четверг, 16:30
                 </p>
                 <motion.div
                   animate={{ y: [0, 10, 0] }}
@@ -176,50 +161,6 @@ export default function App() {
               </div>
             </section>
 
-            <section className="relative py-12 pb-24 px-4 bg-[#fffffa]">
-              <div className="max-w-5xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-                  <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, delay: 0.1 }}
-                    className="bg-white border border-gold-200/40 p-4 sm:p-5 shadow-[0_20px_50px_rgba(137,110,79,0.045)] rounded-[2rem] relative overflow-hidden group flex flex-col justify-between"
-                  >
-                    <div className="absolute inset-2 border border-gold-200/25 rounded-[1.8rem] pointer-events-none" />
-                    <div className="relative rounded-[1.6rem] overflow-hidden aspect-[4/5] sm:aspect-[4/5]">
-                      <img
-                        className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-[4s]"
-                        src={DEFAULT_COUPLE_1}
-                        alt="Мовсес и Армине"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-stone-900/10 via-transparent to-transparent pointer-events-none" />
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, delay: 0.3 }}
-                    className="bg-white border border-gold-200/40 p-4 sm:p-5 shadow-[0_20px_50px_rgba(137,110,79,0.045)] rounded-[2rem] relative overflow-hidden group md:translate-y-8 flex flex-col justify-between"
-                  >
-                    <div className="absolute inset-2 border border-gold-200/25 rounded-[1.8rem] pointer-events-none" />
-                    <div className="relative rounded-[1.6rem] overflow-hidden aspect-[4/5] sm:aspect-[4/5]">
-                      <img
-                        className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-[4s]"
-                        src={couple2Image}
-                        alt="Мовсес и Армине"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-stone-900/10 via-transparent to-transparent pointer-events-none" />
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
-            </section>
-
             <section className="relative py-24 px-4 bg-[#fcfbf9] border-y border-gold-200/20 overflow-hidden">
               <img src={DEFAULT_COUPLE_2} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.07] sepia mix-blend-multiply pointer-events-none" />
               <div className="max-w-xl mx-auto relative">
@@ -241,7 +182,7 @@ export default function App() {
                     className="flex flex-col sm:flex-row items-start sm:items-center relative"
                   >
                     <div className="absolute left-0 sm:left-1/2 w-14 h-14 bg-white border border-gold-300 rounded-full flex flex-col items-center justify-center -translate-x-1/2 shadow-sm z-10">
-                      <span className="text-xs uppercase font-semibold text-[#896e4f] leading-none">16:00</span>
+                      <span className="text-xs uppercase font-semibold text-[#896e4f] leading-none">16:30</span>
                       <span className="text-[8px] text-stone-400 font-medium">Сбор</span>
                     </div>
                     <div className="pl-16 sm:pl-0 sm:w-1/2 sm:pr-12 text-left sm:text-right">
@@ -250,7 +191,7 @@ export default function App() {
                         Сбор гостей
                       </h4>
                       <p className="text-xs sm:text-sm text-stone-600 mt-1 font-light leading-relaxed">
-                        Приветственный сбор, знакомство приглашённых гостей на веранде ресторана и приятная предпраздничная атмосфера. Время сделать первые памятные кадры.
+                        Приветственный сбор на веранде ресторана и приятная предпраздничная атмосфера.
                       </p>
                     </div>
                     <div className="sm:w-1/2" />
@@ -263,17 +204,17 @@ export default function App() {
                     className="flex flex-col sm:flex-row items-start sm:items-center relative"
                   >
                     <div className="absolute left-0 sm:left-1/2 w-14 h-14 bg-white border border-gold-300 rounded-full flex flex-col items-center justify-center -translate-x-1/2 shadow-sm z-10">
-                      <span className="text-xs uppercase font-semibold text-[#896e4f] leading-none">16:30</span>
-                      <span className="text-[8px] text-stone-400 font-medium">Начало</span>
+                      <span className="text-xs uppercase font-semibold text-[#896e4f] leading-none">17:30</span>
+                      <span className="text-[8px] text-stone-400 font-medium">Венчание</span>
                     </div>
                     <div className="sm:w-1/2" />
                     <div className="pl-16 sm:pl-12 sm:w-1/2 text-left">
                       <h4 className="font-serif text-lg text-stone-800 font-medium flex items-center gap-1.5">
                         <Sparkles className="w-4 h-4 text-gold-400" />
-                        Свадебное торжество
+                        Венчание
                       </h4>
                       <p className="text-xs sm:text-sm text-stone-600 mt-1 font-light leading-relaxed">
-                        Торжественная церемония и начало официального ужина. Вас ждут тёплые поздравления, изысканный праздничный банкет, живая музыка и трогательные признания.
+                        Торжественная церемония бракосочетания.
                       </p>
                     </div>
                   </motion.div>
@@ -285,41 +226,19 @@ export default function App() {
                     className="flex flex-col sm:flex-row items-start sm:items-center relative"
                   >
                     <div className="absolute left-0 sm:left-1/2 w-14 h-14 bg-white border border-gold-300 rounded-full flex flex-col items-center justify-center -translate-x-1/2 shadow-sm z-10">
-                      <span className="text-xs uppercase font-semibold text-[#896e4f] leading-none">21:00</span>
-                      <span className="text-[8px] text-stone-400 font-medium">Торт</span>
+                      <span className="text-xs uppercase font-semibold text-[#896e4f] leading-none">18:00</span>
+                      <span className="text-[8px] text-stone-400 font-medium">Банкет</span>
                     </div>
                     <div className="pl-16 sm:pl-0 sm:w-1/2 sm:pr-12 text-left sm:text-right">
                       <h4 className="font-serif text-lg text-stone-800 font-medium flex items-center gap-1.5 justify-start sm:justify-end">
                         <Cake className="w-4 h-4 text-gold-400" />
-                        Вынос торта
+                        Банкет
                       </h4>
                       <p className="text-xs sm:text-sm text-stone-600 mt-1 font-light leading-relaxed">
-                        Кульминационный сладкий момент свадебного банкета — эффектное появление и разрезание авторского праздничного торта.
+                        Праздничный ужин, поздравления и тёплые моменты.
                       </p>
                     </div>
                     <div className="sm:w-1/2" />
-                  </motion.div>
-
-                  <motion.div
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-100px' }}
-                    initial={{ opacity: 0, y: 30 }}
-                    className="flex flex-col sm:flex-row items-start sm:items-center relative"
-                  >
-                    <div className="absolute left-0 sm:left-1/2 w-14 h-14 bg-white border border-gold-300 rounded-full flex flex-col items-center justify-center -translate-x-1/2 shadow-sm z-10">
-                      <span className="text-xs uppercase font-semibold text-[#896e4f] leading-none">23:00</span>
-                      <span className="text-[8px] text-stone-400 font-medium">Финал</span>
-                    </div>
-                    <div className="sm:w-1/2" />
-                    <div className="pl-16 sm:pl-12 sm:w-1/2 text-left">
-                      <h4 className="font-serif text-lg text-stone-800 font-medium flex items-center gap-1.5">
-                        <Flame className="w-4 h-4 text-gold-400" />
-                        Финал вечера
-                      </h4>
-                      <p className="text-xs sm:text-sm text-stone-600 mt-1 font-light leading-relaxed">
-                        Завершение прекрасного праздника, теплые слова благодарности и прощальные объятия. Мы от всего сердца благодарим за то, что Вы разделили этот важный день с нами!
-                      </p>
-                    </div>
                   </motion.div>
                 </div>
               </div>
@@ -395,60 +314,6 @@ export default function App() {
                         Маршрут к ресторану
                       </a>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <section className="relative py-24 px-4 bg-gradient-to-b from-[#fcfbf9] to-[#fffffa] border-t border-gold-200/20">
-              <div className="max-w-2xl mx-auto rounded-3xl bg-white border border-gold-200/40 p-6 sm:p-12 shadow-[0_15px_40px_-5px_rgba(137,110,79,0.06)] relative overflow-hidden">
-                <div className="absolute inset-3 border border-neutral-100 rounded-2xl pointer-events-none" />
-                <div className="text-center relative z-10">
-                  <div className="inline-flex p-3 bg-gold-50 border border-gold-100 rounded-full text-gold-400 mb-4 items-center justify-center">
-                    <Palette className="w-5 h-5" />
-                  </div>
-                  <h3 className="font-serif text-2xl sm:text-3xl text-stone-800 italic font-light mb-4">
-                    Пожелания по Dress-code
-                  </h3>
-                  <div className="w-12 h-[1px] bg-gold-200 mx-auto mb-6" />
-                  <p className="text-stone-700 font-sans font-light text-sm sm:text-base leading-relaxed max-w-lg mx-auto mb-10">
-                    Нам будет приятно, если вы выберете утонченный наряд в праздничном и элегантном стиле. <span className="font-semibold text-tilda-beige">Ваш комфорт важнее всего!</span> Будем очень рады, если Ваши платья и костюмы будут соответствовать гармоничной цветовой гамме нашего торжества:
-                  </p>
-                  <div className="flex flex-wrap justify-center gap-4 mb-10 select-none">
-                    {dressCodePalette.map((color, idx) => (
-                      <div key={idx} className="flex flex-col items-center">
-                        <motion.button
-                          whileHover={{ scale: 1.15, y: -4 }}
-                          whileTap={{ scale: 0.95 }}
-                          onClick={() => setSelectedColor(idx)}
-                          className={`w-12 h-12 rounded-full ${color.bg} shadow-inner border border-gold-300/30 transition-all cursor-pointer relative ${selectedColor === idx ? 'ring-2 ring-[#896e4f] ring-offset-2 scale-110' : ''}`}
-                        >
-                          {selectedColor === idx && (
-                            <AnimatePresence>
-                              <motion.div
-                                initial={{ opacity: 0, scale: 0.5 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                className="absolute inset-0 flex items-center justify-center text-[#896e4f]"
-                              >
-                                <Check className="w-5 h-5 font-bold" />
-                              </motion.div>
-                            </AnimatePresence>
-                          )}
-                        </motion.button>
-                        <span className="text-[10px] text-stone-600 font-medium mt-1.5 uppercase tracking-widest">{color.name}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-8 pt-8 border-t border-stone-100 max-w-md mx-auto">
-                    <div className="flex justify-center mb-3">
-                      <Gift className="w-5 h-5 text-gold-400" />
-                    </div>
-                    <span className="text-[10px] uppercase font-sans font-semibold tracking-widest text-[#896e4f] block mb-1">
-                      О подарках
-                    </span>
-                    <p className="text-xs text-stone-400 leading-relaxed font-light">
-                      Мы будем рады вещам, которые помогут нам обустроить наше новое семейное гнездышко, или Вашим самым душевным поздравлениям в красивом праздничном конверте. Пожалуйста, откажитесь от объемных цветочных букетов – мы улетаем в медовый месяц сразу после торжества! ✈️
-                    </p>
                   </div>
                 </div>
               </div>
