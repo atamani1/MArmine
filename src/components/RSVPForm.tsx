@@ -38,19 +38,18 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ onAddRSVP, targetDate }) => 
       createdAt: new Date().toISOString(),
     };
 
-    // Save to server + send Telegram notification
+    // Send Telegram notification via serverless function
+    const attendanceEmoji = attendance === 'yes' ? '✅' : attendance === 'yes_partner' ? '💑' : '❌';
+    const message = `💌 *Новый ответ на RSVP*\n\n👤 *Гость:* ${fullName.trim()}\n${attendanceEmoji} *Статус:* ${attendanceText}\n💬 *Комментарий:* ${comment.trim() || 'нет'}`;
+
     try {
-      const res = await fetch('/api/rsvps', {
+      await fetch('/api/telegram', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newRSVP),
+        body: JSON.stringify({ message }),
       });
-      const data = await res.json();
-      if (!data.ok) {
-        console.error('RSVP save failed:', data);
-      }
     } catch (err) {
-      console.error('RSVP request failed:', err);
+      console.error('Telegram request failed:', err);
     }
 
     // Backup to Formspree

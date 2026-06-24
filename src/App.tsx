@@ -46,26 +46,14 @@ export default function App() {
       setGuestName(decodeURIComponent(toParam));
     }
 
-    // Load RSVPs from server
-    fetch('/api/rsvps')
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data) && data.length > 0) {
-          setRsvps(data);
-          localStorage.setItem('wedding_rsvps', JSON.stringify(data));
-        }
-      })
-      .catch(() => {
-        // Fallback to localStorage
-        const savedRSVPs = localStorage.getItem('wedding_rsvps');
-        if (savedRSVPs) {
-          try {
-            setRsvps(JSON.parse(savedRSVPs));
-          } catch (e) {
-            console.error('Error loading RSVPs from localStorage', e);
-          }
-        }
-      });
+    const savedRSVPs = localStorage.getItem('wedding_rsvps');
+    if (savedRSVPs) {
+      try {
+        setRsvps(JSON.parse(savedRSVPs));
+      } catch (e) {
+        console.error('Error loading RSVPs from localStorage', e);
+      }
+    }
   }, []);
 
   const handleAddRSVP = (newRSVP: GuestRSVP) => {
