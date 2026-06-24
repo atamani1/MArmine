@@ -10,6 +10,11 @@
   status = 200
 
 [[redirects]]
+  from = "/api/rsvps"
+  to = "/.netlify/functions/rsvps"
+  status = 200
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

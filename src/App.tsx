@@ -47,7 +47,7 @@ export default function App() {
     }
 
     // Load RSVPs from server
-    fetch('/api/telegram')
+    fetch('/api/rsvps')
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data) && data.length > 0) {
