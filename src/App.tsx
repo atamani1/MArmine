@@ -46,14 +46,26 @@ export default function App() {
       setGuestName(decodeURIComponent(toParam));
     }
 
-    const savedRSVPs = localStorage.getItem('wedding_rsvps');
-    if (savedRSVPs) {
-      try {
-        setRsvps(JSON.parse(savedRSVPs));
-      } catch (e) {
-        console.error('Error loading RSVPs from localStorage', e);
-      }
-    }
+    // Load RSVPs from server
+    fetch('/api/rsvp')
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setRsvps(data);
+          localStorage.setItem('wedding_rsvps', JSON.stringify(data));
+        }
+      })
+      .catch(() => {
+        // Fallback to localStorage
+        const savedRSVPs = localStorage.getItem('wedding_rsvps');
+        if (savedRSVPs) {
+          try {
+            setRsvps(JSON.parse(savedRSVPs));
+          } catch (e) {
+            console.error('Error loading RSVPs from localStorage', e);
+          }
+        }
+      });
   }, []);
 
   const handleAddRSVP = (newRSVP: GuestRSVP) => {
@@ -191,7 +203,7 @@ export default function App() {
               <img 
                 src={NEW_COUPLE_PHOTO} 
                 alt="Мовсес и Армине" 
-                className="w-full h-auto object-contain max-h-[80vh] opacity-90"
+                className="w-full h-auto object-contain max-h-[80vh] opacity-60 blur-[0.3px] saturate-75"
                 loading="lazy"
               />
             </section>
@@ -213,6 +225,7 @@ export default function App() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-100px' }}
                     initial={{ opacity: 0, y: 30 }}
+                    transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
                     className="flex flex-col sm:flex-row items-start sm:items-center relative"
                   >
                     <div className="absolute left-0 sm:left-[45%] w-18 h-18 bg-white border border-gold-300 rounded-full flex flex-col items-center justify-center -translate-x-1/2 shadow-sm z-10 w-[72px] h-[72px]">
@@ -235,6 +248,7 @@ export default function App() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-100px' }}
                     initial={{ opacity: 0, y: 30 }}
+                    transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
                     className="flex flex-col sm:flex-row items-start sm:items-center relative"
                   >
                     <div className="absolute left-0 sm:left-[45%] w-[72px] h-[72px] bg-white border border-gold-300 rounded-full flex flex-col items-center justify-center -translate-x-1/2 shadow-sm z-10">
@@ -257,6 +271,7 @@ export default function App() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-100px' }}
                     initial={{ opacity: 0, y: 30 }}
+                    transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
                     className="flex flex-col sm:flex-row items-start sm:items-center relative"
                   >
                     <div className="absolute left-0 sm:left-[45%] w-[72px] h-[72px] bg-white border border-gold-300 rounded-full flex flex-col items-center justify-center -translate-x-1/2 shadow-sm z-10">

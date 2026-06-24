@@ -18,7 +18,7 @@ export default async function handler(req, res) {
   }
 
   const telegramToken = '8681595433:AAHUxyHAFs2wqzWMJWBQJd-dBQNqfURtILw';
-  const chatId = '-5333084146';
+  const chatId = '-1004305832940';
 
   try {
     const response = await fetch(

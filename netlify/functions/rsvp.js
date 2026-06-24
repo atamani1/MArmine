@@ -1,0 +1,87 @@
+const fs = require('fs');
+const path = require('path');
+
+const DATA_FILE = path.join('/tmp', 'rsvps.json');
+
+function loadRSVPs() {
+  try {
+    if (fs.existsSync(DATA_FILE)) {
+      return JSON.parse(fs.readFileSync(DATA_FILE, 'utf-8'));
+    }
+  } catch {}
+  return [];
+}
+
+function saveRSVPs(rsvps) {
+  fs.writeFileSync(DATA_FILE, JSON.stringify(rsvps, null, 2));
+}
+
+const TELEGRAM_TOKEN = '8681595433:AAHUxyHAFs2wqzWMJWBQJd-dBQNqfURtILw';
+const CHAT_ID = '-1004305832940';
+
+async function sendTelegram(message) {
+  const res = await fetch(
+    `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: message,
+        parse_mode: 'Markdown',
+      }),
+    }
+  );
+  return res.json();
+}
+
+exports.handler = async (event) => {
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
+
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 200, headers, body: '' };
+  }
+
+  if (event.httpMethod === 'GET') {
+    const rsvps = loadRSVPs();
+    return { statusCode: 200, headers, body: JSON.stringify(rsvps) };
+  }
+
+  if (event.httpMethod === 'POST') {
+    try {
+      const rsvp = JSON.parse(event.body || '{}');
+      if (!rsvp.fullName || !rsvp.attendance) {
+        return { statusCode: 400, headers, body: JSON.stringify({ error: 'fullName and attendance required' }) };
+      }
+
+      const rsvps = loadRSVPs();
+      rsvps.unshift(rsvp);
+      saveRSVPs(rsvps);
+
+      const attendanceText = rsvp.attendance === 'yes' ? 'Придёт' : rsvp.attendance === 'yes_partner' ? 'Придёт с +1' : 'Не сможет';
+      const attendanceEmoji = rsvp.attendance === 'yes' ? '✅' : rsvp.attendance === 'yes_partner' ? '💑' : '❌';
+      const message = `💌 *Новый ответ на RSVP*\n\n👤 *Гость:* ${rsvp.fullName}\n${attendanceEmoji} *Статус:* ${attendanceText}\n💬 *Комментарий:* ${rsvp.comment || 'нет'}`;
+
+      const tgResult = await sendTelegram(message);
+
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({ ok: true, count: rsvps.length, telegram: tgResult.ok }),
+      };
+    } catch (e) {
+      return { statusCode: 500, headers, body: JSON.stringify({ error: e.message }) };
+    }
+  }
+
+  if (event.httpMethod === 'DELETE') {
+    saveRSVPs([]);
+    return { statusCode: 200, headers, body: JSON.stringify({ ok: true }) };
+  }
+
+  return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
+};

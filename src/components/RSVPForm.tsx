@@ -28,8 +28,32 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ onAddRSVP, targetDate }) => 
     setIsSubmitting(true);
 
     const attendanceText = attendance === 'yes' ? 'Придёт' : attendance === 'yes_partner' ? 'Придёт с +1' : 'Не сможет';
-    const attendanceEmoji = attendance === 'yes' ? '✅' : attendance === 'yes_partner' ? '💑' : '❌';
 
+    const newRSVP: GuestRSVP = {
+      id: Math.random().toString(36).substr(2, 9),
+      fullName: fullName.trim(),
+      attendance,
+      drinks: [],
+      comment: comment.trim() || undefined,
+      createdAt: new Date().toISOString(),
+    };
+
+    // Save to server + send Telegram notification
+    try {
+      const res = await fetch('/api/rsvp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newRSVP),
+      });
+      const data = await res.json();
+      if (!data.ok) {
+        console.error('RSVP save failed:', data);
+      }
+    } catch (err) {
+      console.error('RSVP request failed:', err);
+    }
+
+    // Backup to Formspree
     try {
       await fetch('https://formspree.io/f/xzdqqvev', {
         method: 'POST',
@@ -40,31 +64,7 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ onAddRSVP, targetDate }) => 
           comment: comment.trim() || 'нет',
         }),
       });
-    } catch {
-      // Continue even if Formspree fails
-    }
-
-    // Telegram notification via serverless function
-    const message = `💌 *Новый ответ на RSVP*\n\n👤 *Гость:* ${fullName.trim()}\n${attendanceEmoji} *Статус:* ${attendanceText}\n💬 *Комментарий:* ${comment.trim() || 'нет'}`;
-
-    try {
-      await fetch('/api/telegram', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message }),
-      });
-    } catch {
-      // Continue even if Telegram fails
-    }
-
-    const newRSVP: GuestRSVP = {
-      id: Math.random().toString(36).substr(2, 9),
-      fullName: fullName.trim(),
-      attendance,
-      drinks: [],
-      comment: comment.trim() || undefined,
-      createdAt: new Date().toISOString(),
-    };
+    } catch {}
 
     onAddRSVP(newRSVP);
     setIsSubmitting(false);
