@@ -46,14 +46,25 @@ export default function App() {
       setGuestName(decodeURIComponent(toParam));
     }
 
-    const savedRSVPs = localStorage.getItem('wedding_rsvps');
-    if (savedRSVPs) {
-      try {
-        setRsvps(JSON.parse(savedRSVPs));
-      } catch (e) {
-        console.error('Error loading RSVPs from localStorage', e);
-      }
-    }
+    // Load RSVPs from server, fallback to localStorage
+    fetch('/api/telegram')
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setRsvps(data);
+          localStorage.setItem('wedding_rsvps', JSON.stringify(data));
+        }
+      })
+      .catch(() => {
+        const savedRSVPs = localStorage.getItem('wedding_rsvps');
+        if (savedRSVPs) {
+          try {
+            setRsvps(JSON.parse(savedRSVPs));
+          } catch (e) {
+            console.error('Error loading RSVPs from localStorage', e);
+          }
+        }
+      });
   }, []);
 
   const handleAddRSVP = (newRSVP: GuestRSVP) => {
