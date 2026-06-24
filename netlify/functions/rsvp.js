@@ -1,20 +1,4 @@
-const fs = require('fs');
-const path = require('path');
-
-const DATA_FILE = path.join('/tmp', 'rsvps.json');
-
-function loadRSVPs() {
-  try {
-    if (fs.existsSync(DATA_FILE)) {
-      return JSON.parse(fs.readFileSync(DATA_FILE, 'utf-8'));
-    }
-  } catch {}
-  return [];
-}
-
-function saveRSVPs(rsvps) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify(rsvps, null, 2));
-}
+let rsvps = [];
 
 const TELEGRAM_TOKEN = '8681595433:AAHUxyHAFs2wqzWMJWBQJd-dBQNqfURtILw';
 const CHAT_ID = '-1004305832940';
@@ -47,7 +31,6 @@ exports.handler = async (event) => {
   }
 
   if (event.httpMethod === 'GET') {
-    const rsvps = loadRSVPs();
     return { statusCode: 200, headers, body: JSON.stringify(rsvps) };
   }
 
@@ -58,9 +41,7 @@ exports.handler = async (event) => {
         return { statusCode: 400, headers, body: JSON.stringify({ error: 'fullName and attendance required' }) };
       }
 
-      const rsvps = loadRSVPs();
       rsvps.unshift(rsvp);
-      saveRSVPs(rsvps);
 
       const attendanceText = rsvp.attendance === 'yes' ? 'Придёт' : rsvp.attendance === 'yes_partner' ? 'Придёт с +1' : 'Не сможет';
       const attendanceEmoji = rsvp.attendance === 'yes' ? '✅' : rsvp.attendance === 'yes_partner' ? '💑' : '❌';
@@ -79,7 +60,7 @@ exports.handler = async (event) => {
   }
 
   if (event.httpMethod === 'DELETE') {
-    saveRSVPs([]);
+    rsvps = [];
     return { statusCode: 200, headers, body: JSON.stringify({ ok: true }) };
   }
 
