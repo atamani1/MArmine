@@ -40,7 +40,7 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ onAddRSVP, targetDate }) => 
 
     // Save to server + send Telegram notification
     try {
-      const res = await fetch('/api/rsvp', {
+      const res = await fetch('/api/telegram', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newRSVP),
